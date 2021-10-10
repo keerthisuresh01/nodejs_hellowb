@@ -1,11 +1,17 @@
 var http=require('http');
 const PORT=process.env.PORT ||4000;
+var fs=require('fs');
 var express=require('express');
 var app=express();
 app.get('/',(req,res)=>{
-    res.write("<div><p>keerthis.19it@kongu.edu</p></div>");
-    res.write("<h1>Hello World</h1>");
-    res.end();
+    fs.readFile('index.html',null,function(err,data){
+        if(err){
+            res.write("error");
+        }
+        else{
+            res.write(data);
+        }
+    })
 });  
 app.listen(PORT);
 console.log(PORT);
